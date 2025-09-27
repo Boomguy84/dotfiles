@@ -57,8 +57,9 @@
 
     "custom/light_dark": {
         "format": "󰐾",
-        "on-click": "~/.config/waybar/scripts/baraction light",
-        "tooltip": false
+        "on-click": "bash -lc '~/.config/scripts/wallpaper_theming.sh'",
+        "tooltip": true,
+        "tooltip-format": "Click to randomize wallpaper and theme"
     },
 
     "cpu": {
