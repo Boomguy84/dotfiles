@@ -12,22 +12,38 @@
 !.p10k.zsh
 !.zshrc.pre-oh-my-zsh
 
-# Core configs
+# Allow .config tree
+!.config/
+
+# Core configs (unignore dir, then its contents)
+!.config/hypr/
 !.config/hypr/**
+!.config/kitty/
 !.config/kitty/**
+!.config/waybar/
 !.config/waybar/**
+!.config/wofi/
 !.config/wofi/**
+!.config/nvim/
 !.config/nvim/**
+!.config/mako/
 !.config/mako/**
+!.config/yazi/
 !.config/yazi/**
+!.config/spicetify/
 !.config/spicetify/**
+!.config/systemd/
 !.config/systemd/**
+!.config/wal/
 !.config/wal/**
+!.config/scripts/
 !.config/scripts/**
+!.config/wallpapers/
 !.config/wallpapers/**
 
-# Optional extras you might care about
+# Optional extras
+!.config/btop/
 !.config/btop/**
+!.config/gtk-3.0/
 !.config/gtk-3.0/**
 !.config/mimeapps.list
-

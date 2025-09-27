@@ -1,0 +1,22 @@
+[manager]
+ratio = [1, 2, 3]         # Sidebars:Parent:Preview
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+show_hidden = true
+show_symlink = true
+
+[preview]
+tab_size = 4
+max_width = 120
+max_height = 40
+timeout = 500             # ms
+
+[opener]
+edit = [
+    { run = 'nvim "$@"', desc = "Edit with Neovim" },
+]
+open = [
+    { run = 'xdg-open "$1"', desc = "Open with system default" },
+]
+

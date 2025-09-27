@@ -1,0 +1,86 @@
+# Purple-themed btop custom theme
+
+# Main background, leave empty for terminal transparency
+theme[main_bg]="#1e1b29"
+
+# Main text and title color
+theme[main_fg]="#d8d3e7"
+theme[title]="#d8d3e7"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#a277ff"
+
+# Selected item in process list
+theme[selected_bg]="#4c4177"
+theme[selected_fg]="#d8d3e7"
+
+# Inactive/disabled text
+theme[inactive_fg]="#4c4177"
+
+# Text on top of graphs (e.g. uptime, bandwidth)
+theme[graph_text]="#a277ff"
+
+# Background for meters
+theme[meter_bg]="#2a243a"
+
+# Process box misc info (CPU graph, mem, etc.)
+theme[proc_misc]="#d8d3e7"
+
+# Box border colors
+theme[cpu_box]="#a277ff"
+theme[mem_box]="#7c3aed"
+theme[net_box]="#7c3aed"
+theme[proc_box]="#4c4177"
+
+# Divider and border lines
+theme[div_line]="#4c4177"
+
+# Temperature graph (cool → warm → critical)
+theme[temp_start]="#7c3aed"
+theme[temp_mid]="#a277ff"
+theme[temp_end]="#f38ba8"
+
+# CPU graph colors (gradient, all purple tones)
+theme[cpu_start]="#4c4177"
+theme[cpu_mid]="#7c3aed"
+theme[cpu_end]="#a277ff"
+
+# Memory/disk free
+theme[free_start]="#4c4177"
+theme[free_mid]="#7c3aed"
+theme[free_end]="#a277ff"
+
+# Memory/disk cached
+theme[cached_start]="#7c3aed"
+theme[cached_mid]="#a277ff"
+theme[cached_end]="#94e2d5"
+
+# Memory/disk available
+theme[available_start]="#a277ff"
+theme[available_mid]="#94e2d5"
+theme[available_end]="#f38ba8"
+
+# Memory/disk used
+theme[used_start]="#4c4177"
+theme[used_mid]="#7c3aed"
+theme[used_end]="#94e2d5"
+
+# Download graph
+theme[download_start]="#7c3aed"
+theme[download_mid]="#a277ff"
+theme[download_end]="#f38ba8"
+
+# Upload graph
+theme[upload_start]="#4c4177"
+theme[upload_mid]="#7c3aed"
+theme[upload_end]="#a277ff"
+
+# Process usage color gradient (for threads, mem, CPU)
+theme[process_start]="#4c4177"
+theme[process_mid]="#7c3aed"
+theme[process_end]="#a277ff"
+
+# Warnings and critical states
+theme[warning]="#f9e2af"
+theme[critical]="#f38ba8"
+

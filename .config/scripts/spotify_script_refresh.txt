@@ -1,0 +1,3 @@
+pgrep -a -f spotify_info.sh 
+pkill -f "bash /home/scott/.config/scripts/spotify_info.sh"
+nohup ~/.config/scripts/spotify_info.sh >/dev/null 2>&1 &
