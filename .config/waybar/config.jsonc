@@ -88,8 +88,8 @@
 
     "custom/updates": {
         "format": "{}",
-        "exec": "~/.config/waybar/scripts/update-sys",
-        "on-click": "~/.config/waybar/scripts/update-sys update",
+        "exec": "~/.config/scripts/update_sys.sh",
+        "on-click": "~/.config/scripts/update_sys.sh update",
         "interval": 300,
         "tooltip": true
     },
