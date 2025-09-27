@@ -1,0 +1,33 @@
+# Ignore everything by default
+*
+
+# Always keep .gitignore itself
+!.gitignore
+
+# Shell configs
+!.bashrc
+!.bash_profile
+!.bash_logout
+!.zshrc
+!.p10k.zsh
+!.zshrc.pre-oh-my-zsh
+
+# Core configs
+!.config/hypr/**
+!.config/kitty/**
+!.config/waybar/**
+!.config/wofi/**
+!.config/nvim/**
+!.config/mako/**
+!.config/yazi/**
+!.config/spicetify/**
+!.config/systemd/**
+!.config/wal/**
+!.config/scripts/**
+!.config/wallpapers/**
+
+# Optional extras you might care about
+!.config/btop/**
+!.config/gtk-3.0/**
+!.config/mimeapps.list
+
