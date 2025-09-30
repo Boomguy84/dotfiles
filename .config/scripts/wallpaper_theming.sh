@@ -13,30 +13,44 @@ HYPRLOCK_WAL="$HOME/.cache/wal/hyprlock-wal.conf"
 
 # --- PICK IMAGE -------------------------------------------------------------
 IMG="${1:-}"
-
 STATE_FILE="$HOME/.cache/current_wall.txt"
 
-if [[ -z "$IMG" ]]; then
-  mapfile -t CAND < <(find "$WALL_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \))
-  ((${#CAND[@]})) || {
-    echo "No images in $WALL_DIR"
-    exit 1
-  }
+# Build a stable, sorted list of wallpapers
+mapfile -t CAND < <(find "$WALL_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | sort)
+((${#CAND[@]})) || {
+  echo "No images found in $WALL_DIR"
+  exit 1
+}
 
-  # read last wallpaper if it exists
+if [[ -n "$IMG" ]]; then
+  # If an explicit image was provided, trust it (and record it)
+  echo "$IMG" >"$STATE_FILE"
+  ln -sf "$IMG" "$HOME/.cache/current_wall.png"
+else
+  # Read last used (if any)
   LAST=""
   [[ -f "$STATE_FILE" ]] && LAST="$(<"$STATE_FILE")"
 
-  # pick until it's not the same
-  while :; do
-    NEW="${CAND[RANDOM % ${#CAND[@]}]}"
-    [[ "$NEW" != "$LAST" ]] && {
-      IMG="$NEW"
-      break
-    }
-  done
+  # Find the index of LAST in CAND
+  IDX=-1
+  if [[ -n "$LAST" ]]; then
+    for i in "${!CAND[@]}"; do
+      if [[ "${CAND[$i]}" == "$LAST" ]]; then
+        IDX=$i
+        break
+      fi
+    done
+  fi
 
-  # save new wallpaper path
+  # Pick the next one (wrap at end). If LAST not found, start at first.
+  if ((IDX >= 0)); then
+    NEXT=$(((IDX + 1) % ${#CAND[@]}))
+    IMG="${CAND[$NEXT]}"
+  else
+    IMG="${CAND[0]}"
+  fi
+
+  # Record new wallpaper and update symlink for Hyprlock
   echo "$IMG" >"$STATE_FILE"
   ln -sf "$IMG" "$HOME/.cache/current_wall.png"
 fi
