@@ -1,6 +1,9 @@
 # Ignore everything by default
 *
 
+# Ignore env file
+.config/scripts/.env
+
 # Always keep .gitignore itself
 !.gitignore
 
