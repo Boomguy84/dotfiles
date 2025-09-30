@@ -1,9 +1,6 @@
 # Ignore everything by default
 *
 
-# Ignore env file
-.config/scripts/.env
-
 # Always keep .gitignore itself
 !.gitignore
 
@@ -48,3 +45,6 @@
 !.config/gtk-3.0/
 !.config/gtk-3.0/**
 !.config/mimeapps.list
+
+# Ignore env file
+.config/scripts/.env
