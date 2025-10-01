@@ -136,12 +136,9 @@ command -v makoctl >/dev/null && makoctl reload 2>/dev/null || true
 
 # Spicetify:
 # We use Option A: theme color.ini references xrdb:colorN, which pywal just updated
-spicetify apply
-
-# Reload spotify_info
-pkill -f "spotify_info.sh"
-sleep 0.1
-nohup ~/.config/scripts/spotify_info.sh >/dev/null 2>&1 &
+if command -v spicetify >/dev/null 2>&1; then
+  spicetify apply >/dev/null 2>&1 || true
+fi
 
 # Hyprland (reload to pick up new include)
 hyprctl reload 2>/dev/null || true

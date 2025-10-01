@@ -1,0 +1,16 @@
+[Unit]
+Description=Spotify Info Script (Waybar art/title)
+Wants=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/playerctld daemon
+ExecStart=%h/.config/scripts/spotify_info.sh playerctld
+Restart=always
+RestartSec=2
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:%h/.local/bin
+Environment=XDG_RUNTIME_DIR=%t
+
+[Install]
+WantedBy=default.target

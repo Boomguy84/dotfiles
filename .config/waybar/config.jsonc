@@ -59,7 +59,7 @@
         "format": "󰐾",
         "on-click": "bash -lc '~/.config/scripts/wallpaper_theming.sh'",
         "tooltip": true,
-        "tooltip-format": "Click to randomize wallpaper and theme"
+        "tooltip-format": "Click to cycle wallpaper and theme"
     },
 
     "cpu": {

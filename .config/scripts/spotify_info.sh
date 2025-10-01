@@ -5,12 +5,12 @@
 
 set -euo pipefail
 
-PLAYER="${1:-spotify,Spicetify}"          # e.g. ./spotify_info.sh com.spotify.Client
+PLAYER="${1:-spotify,Spicetify}" # e.g. ./spotify_info.sh com.spotify.Client
 OUT_DIR="/tmp/spotify_cache"
 mkdir -p "$OUT_DIR"
 
 # ------ settings you can tweak ------
-ART_RADIUS=18        # corner radius in *source-image* pixels
+ART_RADIUS=18 # corner radius in *source-image* pixels
 ICON_RADIUS=180
 # ------------------------------------
 
@@ -27,30 +27,40 @@ fi
 : "${SPOTIFY_CLIENT_SECRET:?Set SPOTIFY_CLIENT_SECRET in .env}"
 
 # --- Token cache ---
-TOKEN=""; TOKEN_EXP=0
+TOKEN=""
+TOKEN_EXP=0
 now() { date +%s; }
 get_token() {
   local t exp
-  if (( $(now) < TOKEN_EXP )); then echo "$TOKEN"; return 0; fi
+  if (($(now) < TOKEN_EXP)); then
+    echo "$TOKEN"
+    return 0
+  fi
   read -r t exp < <(
     curl -s -u "$SPOTIFY_CLIENT_ID:$SPOTIFY_CLIENT_SECRET" \
       -d grant_type=client_credentials \
-      https://accounts.spotify.com/api/token \
-      | jq -r '"\(.access_token) \(.expires_in)"'
+      https://accounts.spotify.com/api/token |
+      jq -r '"\(.access_token) \(.expires_in)"'
   )
-  [[ -z "${t:-}" || "$t" == "null" ]] && { echo "Failed to get Spotify API token" >&2; return 1; }
-  TOKEN="$t"; TOKEN_EXP=$(( $(now) + ${exp:-3600} - 60 )); echo "$TOKEN"
+  [[ -z "${t:-}" || "$t" == "null" ]] && {
+    echo "Failed to get Spotify API token" >&2
+    return 1
+  }
+  TOKEN="$t"
+  TOKEN_EXP=$(($(now) + ${exp:-3600} - 60))
+  echo "$TOKEN"
 }
 
 trim() { sed 's/^[[:space:]]\+//; s/[[:space:]]\+$//' <<<"$1"; }
 
 extract_track_id() {
   local uri id
-  uri="$(trim "${1:-}")"; [[ -z "$uri" ]] && return 1
+  uri="$(trim "${1:-}")"
+  [[ -z "$uri" ]] && return 1
   id="$uri"
-  id="${id##*:}"         # mpris urn tail
-  id="${id#*/track/}"    # URL to id
-  id="${id%%\?*}"        # drop query
+  id="${id##*:}"      # mpris urn tail
+  id="${id#*/track/}" # URL to id
+  id="${id%%\?*}"     # drop query
   [[ "$id" == *:* ]] && id="${id##*:}"
   [[ -n "$id" ]] && printf '%s\n' "$id"
 }
@@ -71,18 +81,17 @@ write_rounded_png() {
   # --- art.png (radius 18) ---
   magick "$src" \
     \( -size "${w}x${h}" xc:none \
-       -draw "roundrectangle 0,0 $((w-1)),$((h-1)) $ART_RADIUS,$ART_RADIUS" \) \
+    -draw "roundrectangle 0,0 $((w - 1)),$((h - 1)) $ART_RADIUS,$ART_RADIUS" \) \
     -alpha set -compose DstIn -composite -alpha on PNG32:"$OUT_DIR/art.png.tmp"
   mv -f "$OUT_DIR/art.png.tmp" "$OUT_DIR/art.png"
 
   # --- icon.png (radius 180) ---
   magick "$src" \
     \( -size "${w}x${h}" xc:none \
-       -draw "roundrectangle 0,0 $((w-1)),$((h-1)) $ICON_RADIUS,$ICON_RADIUS" \) \
+    -draw "roundrectangle 0,0 $((w - 1)),$((h - 1)) $ICON_RADIUS,$ICON_RADIUS" \) \
     -alpha set -compose DstIn -composite -alpha on PNG32:"$OUT_DIR/icon.png.tmp"
   mv -f "$OUT_DIR/icon.png.tmp" "$OUT_DIR/icon.png"
 }
-
 
 fetch_and_write() {
   local id="$1"
@@ -104,23 +113,46 @@ fetch_and_write() {
   fi
 
   # atomically write text files
-  [[ -n "$title"   ]] && { printf '%s\n' "$title"   > "$OUT_DIR/title.txt.tmp";  mv -f "$OUT_DIR/title.txt.tmp"  "$OUT_DIR/title.txt"; }
-  [[ -n "$artists" ]] && { printf '%s\n' "$artists" > "$OUT_DIR/artist.txt.tmp"; mv -f "$OUT_DIR/artist.txt.tmp" "$OUT_DIR/artists.txt"; }
+  [[ -n "$title" ]] && {
+    printf '%s\n' "$title" >"$OUT_DIR/title.txt.tmp"
+    mv -f "$OUT_DIR/title.txt.tmp" "$OUT_DIR/title.txt"
+  }
+  [[ -n "$artists" ]] && {
+    printf '%s\n' "$artists" >"$OUT_DIR/artist.txt.tmp"
+    mv -f "$OUT_DIR/artist.txt.tmp" "$OUT_DIR/artists.txt"
+  }
 
   # send signal to waybar
   pkill -RTMIN+10 waybar 2>/dev/null || true
 }
 
-# --- Main loop: react on track changes via playerctl ---
-LAST_ID=""
-playerctl -p "$PLAYER" metadata --format '{{mpris:trackid}}|{{xesam:url}}' --follow |
-while IFS='|' read -r tid url; do
-  track_id="$(extract_track_id "$tid")"
-  [[ -z "$track_id" ]] && track_id="$(extract_track_id "$url" || true)"
-  [[ -z "$track_id" ]] && continue
+# --- Robust, auto-reconnecting follower with initial fetch ---
+while true; do
+  LAST_ID=""
 
-  if [[ "$track_id" != "$LAST_ID" ]]; then
-    fetch_and_write "$track_id" || true
-    LAST_ID="$track_id"
+  # Initial one-shot fetch so files refresh even if no change event fires
+  cur="$(playerctl -p "$PLAYER" --all-players metadata --format '{{mpris:trackid}}|{{xesam:url}}' 2>/dev/null || true)"
+  if [[ -n "$cur" ]]; then
+    tid="${cur%%|*}"
+    url="${cur#*|}"
+    track_id="$(extract_track_id "$tid")"
+    [[ -z "$track_id" ]] && track_id="$(extract_track_id "$url" || true)"
+    if [[ -n "$track_id" ]]; then
+      fetch_and_write "$track_id" || true
+      LAST_ID="$track_id"
+    fi
   fi
+
+  # Follow updates; when Spotify exits, this stream ends and we loop back
+  while IFS='|' read -r tid url; do
+    track_id="$(extract_track_id "$tid")"
+    [[ -z "$track_id" ]] && track_id="$(extract_track_id "$url" || true)"
+    [[ -z "$track_id" ]] && continue
+    if [[ "$track_id" != "$LAST_ID" ]]; then
+      fetch_and_write "$track_id" || true
+      LAST_ID="$track_id"
+    fi
+  done < <(playerctl -p "$PLAYER" --all-players metadata --format '{{mpris:trackid}}|{{xesam:url}}' --follow)
+
+  sleep 2 # brief backoff before reattaching
 done
