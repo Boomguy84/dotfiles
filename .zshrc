@@ -1,6 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -206,3 +209,9 @@ ZSH_HIGHLIGHT_STYLES[comment]="fg=${color8}"                  # #958c9c
 
 # --- end styles ---
 
+# --- Run Fastfetch once per new interactive Kitty terminal window ---
+if [[ -o interactive ]] && command -v fastfetch >/dev/null 2>&1 && [[ -z "${FASTFETCH_RAN+x}" ]]; then
+  export FASTFETCH_RAN=1          # prevent re-running in subshells
+  unsetopt xtrace verbose         # don't echo the command itself
+  fastfetch
+fi
