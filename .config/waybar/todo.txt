@@ -1,0 +1,14 @@
+#DONE
+change the new txt file to make it so that when spotify launches in the background it has a green background
+
+#DONE
+add "pkill -SIGUSR2 waybar" to the wallpaper changing
+
+check to relaunch the wallpaper changing script
+
+
+swww img ~/Pictures/wallpapers/mywall.png \
+  --transition-type grow \
+  --transition-angle 135 \
+  --transition-fps 60 \
+  --transition-duration 1.0

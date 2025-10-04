@@ -56,7 +56,13 @@ else
 fi
 
 # --- SET WITH SWWW ----------------------------------------------------------
-swww img "$IMG" --transition-type fade --transition-pos 0.5,0.5 --transition-duration 1
+# swww img "$IMG" --transition-type fade --transition-pos 0.5,0.5 --transition-duration 1
+
+swww img $IMG \
+  --transition-type grow \
+  --transition-pos 1.0,1.0 \
+  --transition-fps 60 \
+  --transition-duration 2.0
 
 # --- GENERATE WAL PALETTE ---------------------------------------------------
 # -n = do not set wallpaper (already done); still writes cache + Xresources
@@ -126,9 +132,6 @@ input-field {
 EOF
 
 # --- NUDGE APPS TO RELOAD ---------------------------------------------------
-# Waybar CSS reload
-#pkill -USR2 waybar
-
 # Mako reload (if running)
 command -v makoctl >/dev/null && makoctl reload 2>/dev/null || true
 
@@ -136,9 +139,17 @@ command -v makoctl >/dev/null && makoctl reload 2>/dev/null || true
 
 # Spicetify:
 # We use Option A: theme color.ini references xrdb:colorN, which pywal just updated
+# Spawn it as its own process instead of a child of the waybar, lets it persist after the final CSS reload
 if command -v spicetify >/dev/null 2>&1; then
-  spicetify apply >/dev/null 2>&1 || true
+  setsid -f nohup sh -c 'spicetify apply >/dev/null 2>&1' >/dev/null 2>&1 || true
 fi
 
 # Hyprland (reload to pick up new include)
 hyprctl reload 2>/dev/null || true
+
+# --- LAST: reload Waybar CSS safely -----------------------------------------
+# ensure files are flushed, then signal reload in a detached subshell
+sync
+sleep 0.05
+pgrep -x waybar >/dev/null 2>&1 &&
+  setsid -f sh -c 'sleep 0.15; pkill -SIGUSR2 -x waybar' >/dev/null 2>&1 || true

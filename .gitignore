@@ -38,6 +38,10 @@
 !.config/scripts/**
 !.config/wallpapers/
 !.config/wallpapers/**
+!.config/fastfetch/
+!.config/fastfetch/**
+!.config/splash/
+!.config/splash/**
 
 # Optional extras
 !.config/btop/

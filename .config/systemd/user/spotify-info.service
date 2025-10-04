@@ -5,10 +5,12 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStartPre=/usr/bin/playerctld daemon
+ExecStartPre=-/usr/bin/playerctld daemon
+ExecStartPre=-/usr/bin/pkill -f "playerctl .*--follow"
 ExecStart=%h/.config/scripts/spotify_info.sh playerctld
 Restart=always
-RestartSec=2
+RestartSec=0.5
+KillMode=process
 Environment=PATH=/usr/local/bin:/usr/bin:/bin:%h/.local/bin
 Environment=XDG_RUNTIME_DIR=%t
 

@@ -1,6 +1,10 @@
-/* import wal colors */
+/*
+ *
+ * BACKUP OF ORIGINAL COLORS, UPDATED ONE USES THE THEME
+ *
+ */
+
 @import url("/home/scott/.cache/wal/colors-waybar.css");
-@import url("/home/scott/.cache/wal/colors-waybar-extra.css");
 
 * {
     border: none;
@@ -12,48 +16,48 @@
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0); /* keep fully transparent bar root */
-    color: @foreground;
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
 }
 
 tooltip {
-    background: @background;
+    background: #1e1e2e;
     opacity: 0.5;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: @color0;
+    border-color: #11111b;
 }
 
-tooltip label {
-    color: @foreground;
+tooltip label{
+    color: #cdd6f4;
 }
 
 #workspaces button {
     padding: 5px;
-    color: @color8;        /* inactive */
+    color: #313244;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: @color7_light3;        /* light accent */
+    color: #a6adc8;
 }
 
 #workspaces button.focused {
-    color: @color7_light3;        /* light accent text */
-    background: @color3;   /* focused bg */
+    color: #a6adc8;
+    background: #eba0ac;
     border-radius: 10px;
 }
 
 #workspaces button.urgent {
-    color: @color0;        /* dark text on bright */
-    background: #a6e3a1;   /* urgent bg */
+    color: #11111b;
+    background: #a6e3a1;
     border-radius: 10px;
 }
 
 #workspaces button:hover {
-    background: @color0;   /* dark hover bg */
-    color: @foreground;
+    background: #11111b;
+    color: #cdd6f4;
     border-radius: 10px;
 }
 
@@ -82,7 +86,7 @@ tooltip label {
 #custom-spotify-logo,
 #image.spotify-art,
 #backlight {
-    background: alpha(@background, 0.8);  /* semi-transparent panels */
+    background: #1e1e2e;
     opacity: 0.8;
     padding: 0px 10px;
     margin: 3px 0px;
@@ -100,13 +104,14 @@ tooltip label {
 }
 
 #custom-clock {
-    border-radius: 10px;
-    margin-right: 10px;
+	border-radius: 10px 10px 10px 10px;
+	margin-right: 10px;
 }
 
 #temperature.critical {
-    color: @color11; /* alert */
+    color: #e92d4d;
 }
+
 
 #workspaces {
     padding-right: 0px;
@@ -114,7 +119,7 @@ tooltip label {
 }
 
 #custom-power_profile {
-    color: @color5;  /* matches urgent green-ish role */
+    color: #a6e3a1;
     border-left: 0px;
     border-right: 0px;
 }
@@ -126,28 +131,29 @@ tooltip label {
 }
 
 #custom-launch_wofi {
-    color: @color4;  /* launcher accent */
+    color: #89b4fa;
     margin-left: 10px;
     border-right: 0px;
 }
 
 #pulseaudio {
-    color: @color4;  /* output accent */
+    color: #89b4fa;
     border-left: 0px;
     border-right: 0px;
 }
 
 #pulseaudio.microphone {
-    color: @color6;  /* mic accent */
-    border-left: 0px;
+    color: #cba6f7;    border-left: 0px;
     border-right: 0px;
 }
 
 #battery {
-    color: @color5;  /* good battery */
+    color: #a6e3a1;
     border-left: 0px;
 }
 
 #custom-spotify, #custom-player-prev, #custom-player-toggle, #custom-player-next, #custom-spotify-logo {
     color: #6fcf97;
 }
+
+
