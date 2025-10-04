@@ -68,6 +68,7 @@ swww img $IMG \
 # -n = do not set wallpaper (already done); still writes cache + Xresources
 wal -i "$IMG" -n -q
 ~/.config/wal/hooks/10-light-variants.sh
+~/.config/wal/hooks/30-btop-theme.sh
 
 # --- BUILD HYPRLAND COLORS FROM WAL JSON -----------------------------------
 # Requires jq

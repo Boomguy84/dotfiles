@@ -1,0 +1,62 @@
+# Auto-generated from Pywal — DO NOT EDIT
+# Source: /home/scott/.cache/wal/colors.json
+
+theme[main_bg]="#100d17"
+theme[main_fg]="#f5cfb9"
+theme[title]="#f5cfb9"
+
+theme[hi_fg]="#D17989"
+
+theme[selected_bg]="#766B8D"
+theme[selected_fg]="#f5cfb9"
+
+theme[inactive_fg]="#ab9081"
+theme[graph_text]="#AA87A3"
+theme[meter_bg]="#100d17"
+theme[proc_misc]="#f5cfb9"
+
+theme[cpu_box]="#D17989"
+theme[mem_box]="#AA87A3"
+theme[net_box]="#F8948B"
+theme[proc_box]="#766B8D"
+theme[div_line]="#766B8D"
+
+# gradients
+theme[temp_start]="#AA87A3"
+theme[temp_mid]  ="#F8948B"
+theme[temp_end]  ="#E3939D"
+
+theme[cpu_start] ="#766B8D"
+theme[cpu_mid]   ="#986E8B"
+theme[cpu_end]   ="#AA87A3"
+
+theme[free_start] ="#766B8D"
+theme[free_mid]   ="#986E8B"
+theme[free_end]   ="#AA87A3"
+
+theme[cached_start] ="#986E8B"
+theme[cached_mid]   ="#AA87A3"
+theme[cached_end]   ="#E3939D"
+
+theme[available_start] ="#f5cfb9"
+theme[available_mid]   ="#E3939D"
+theme[available_end]   ="#F8948B"
+
+theme[used_start] ="#766B8D"
+theme[used_mid]   ="#D17989"
+theme[used_end]   ="#E3939D"
+
+theme[download_start] ="#986E8B"
+theme[download_mid]   ="#AA87A3"
+theme[download_end]   ="#F8948B"
+
+theme[upload_start] ="#766B8D"
+theme[upload_mid]   ="#986E8B"
+theme[upload_end]   ="#AA87A3"
+
+theme[process_start] ="#766B8D"
+theme[process_mid]   ="#986E8B"
+theme[process_end]   ="#AA87A3"
+
+theme[warning]  ="#F8948B"
+theme[critical] ="#D17989"
