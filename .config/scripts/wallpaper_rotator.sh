@@ -2,7 +2,6 @@
 set -Eeuo pipefail
 
 # --- config ---
-INTERVAL_MIN=60 # change cadence here
 THEMER="$HOME/.config/scripts/wallpaper_theming.sh"
 RUNLOCK="$HOME/.cache/wallrotate.run.lock" # per-iteration lock (soft)
 
@@ -32,9 +31,9 @@ while :; do
     fi
   } 2>/dev/null
 
-  # Sleep the remaining interval (never less than 5s)
-  took=$(($(date +%s) - start_ts))
-  nap=$((INTERVAL_MIN * 60 - took))
-  ((nap < 5)) && nap=5
+  # --- sleep until the next top of the hour ---
+  now=$(date +%s)
+  secs_into_hour=$((now % 3600))
+  nap=$((3600 - secs_into_hour))
   sleep "$nap"
 done
