@@ -52,5 +52,8 @@
 !.config/systemd/
 !.config/systemd/**
 
+# Allow todo list
+!.config/todo.txt
+
 # Ignore env file
 .config/scripts/.env

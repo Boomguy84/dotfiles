@@ -1,0 +1,37 @@
+#DONE
+change the new txt file to make it so that when spotify launches in the background it has a green background
+
+#DONE
+add "pkill -SIGUSR2 waybar" to the wallpaper changing
+
+#DONE
+check to relaunch the wallpaper changing script
+
+#DONE
+swww img ~/Pictures/wallpapers/mywall.png \
+  --transition-type grow \
+  --transition-angle 135 \
+  --transition-fps 60 \
+  --transition-duration 1.0
+
+add documentation 
+
+add nvim auto theme update
+
+fix hyprland config
+
+fix wofi to be like: https://github.com/Narsell/dotfiles/tree/main
+
+add tray stuff
+
+fix waybar locking
+
+test out ewww
+
+potential bus widget
+
+install discord
+
+fix fastfetch at terminal launch
+
+make hyprland start at launch, preferably making hyprlock the landing screen
