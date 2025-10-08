@@ -16,6 +16,7 @@ fastfetch --config hyde/*.jsonc
     "separator": " : "
   },
   "modules": [
+    "break",
     {
       "type": "command",
       "key": "  󰖌",
@@ -25,7 +26,7 @@ fastfetch --config hyde/*.jsonc
     "break",
     {
       "type": "custom",
-      "format": "┌──────────────────────────────────────────┐"
+      "format": "┌────────────────────── Software ──────────────────────┐"
     },
     {
       "type": "chassis",
@@ -68,17 +69,12 @@ fastfetch --config hyde/*.jsonc
     },
     {
       "type": "custom",
-      "format": "└──────────────────────────────────────────┘"
+      "format": "└──────────────────────────────────────────────────────┘"
     },
     "break",
     {
-      "type": "title",
-      "key": "  ",
-      "format": "{6} {7} {8}"
-    },
-    {
       "type": "custom",
-      "format": "┌──────────────────────────────────────────┐"
+      "format": "┌────────────────────── Hardware ──────────────────────┐"
     },
     {
       "type": "cpu",
@@ -104,6 +100,15 @@ fastfetch --config hyde/*.jsonc
       "keyColor": "magenta"
     },
     {
+      "type": "custom",
+      "format": "└──────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "┌───────────────── Age / Uptime / Usr ─────────────────┐"
+    },
+    {
       "type": "disk",
       "key": "  󱦟 OS Age ",
       "folders": "/",
@@ -116,8 +121,13 @@ fastfetch --config hyde/*.jsonc
       "keyColor": "red"
     },
     {
+      "type": "title",
+      "key": "   User",
+      "format": "{6} {7} {8}"
+    },
+    {
       "type": "custom",
-      "format": "└──────────────────────────────────────────┘"
+      "format": "└──────────────────────────────────────────────────────┘"
     },
     {
       "type": "colors",
