@@ -51,13 +51,13 @@
 
     "custom/lock_screen": {
         "format": "",
-        "on-click": "sh -c '(sleep 0.1; hyprlock)' & disown",
+        "on-click": "setsid -f hyprlock >/dev/null 2>&1",
         "tooltip": false
     },
 
     "custom/light_dark": {
         "format": "󰐾",
-        "on-click": "bash -lc '~/.config/scripts/wallpaper_theming.sh'",
+        "on-click": "~/.config/scripts/wallpaper_theming.sh",
         "tooltip": true,
         "tooltip-format": "Click to cycle wallpaper and theme"
     },

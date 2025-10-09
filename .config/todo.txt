@@ -24,6 +24,7 @@ fix wofi to be like: https://github.com/Narsell/dotfiles/tree/main
 
 add tray stuff
 
+# DONE
 fix waybar locking
 
 test out ewww
@@ -32,6 +33,10 @@ potential bus widget
 
 install discord
 
+# DONE
 fix fastfetch at terminal launch
 
 make hyprland start at launch, preferably making hyprlock the landing screen
+
+# DONE
+fix theming, the top right button doesnt work

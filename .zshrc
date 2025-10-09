@@ -209,9 +209,22 @@ ZSH_HIGHLIGHT_STYLES[comment]="fg=${color8}"                  # #958c9c
 
 # --- end styles ---
 
-# --- Run Fastfetch once per new interactive Kitty terminal window ---
-if [[ -o interactive ]] && command -v fastfetch >/dev/null 2>&1 && [[ -z "${FASTFETCH_RAN+x}" ]]; then
-  export FASTFETCH_RAN=1          # prevent re-running in subshells
-  unsetopt xtrace verbose         # don't echo the command itself
+# --- Show fastfetch once per new interactive terminal, after prompt is ready ---
+autoload -Uz add-zsh-hook
+
+typeset -g _FASTFETCH_SHOWN=0
+_fastfetch_once() {
+  [[ $_FASTFETCH_SHOWN -eq 1 ]] && return
+  [[ -o interactive ]] || return
+  command -v fastfetch >/dev/null 2>&1 || return
+
+  _FASTFETCH_SHOWN=1
+  # Optional: only in real terminals (not inside some tools)
+  # [[ -n "$KITTY_WINDOW_ID" ]] || return
+
+  set +x +v  # avoid noisy tracing
   fastfetch
-fi
+}
+add-zsh-hook precmd _fastfetch_once
+# --- end fastfetch ---
+
