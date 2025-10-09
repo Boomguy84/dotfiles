@@ -16,6 +16,7 @@ swww img ~/Pictures/wallpapers/mywall.png \
 
 add documentation 
 
+# DONE
 add nvim auto theme update
 
 fix hyprland config
@@ -31,6 +32,7 @@ test out ewww
 
 potential bus widget
 
+# DONE
 install discord
 
 # DONE
@@ -40,3 +42,5 @@ make hyprland start at launch, preferably making hyprlock the landing screen
 
 # DONE
 fix theming, the top right button doesnt work
+
+fix screenshot shit, mainly hyprland.conf bindings
