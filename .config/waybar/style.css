@@ -59,15 +59,15 @@ tooltip label {
 
 /* State-based colors */
 #network.wifi {
-  color: @color8;              /* accent for Wi-Fi */
+  color: @color7_light3;              /* accent for Wi-Fi */
 }
 
 #network.ethernet {
-  color: @color8;              /* accent for Ethernet */
+  color: @color7_light3;              /* accent for Ethernet */
 }
 
 #network.linked {
-  color: @color8;              /* link present, no IP */
+  color: @color7_light3;              /* link present, no IP */
 }
 
 #network.disconnected, #network.disabled {
