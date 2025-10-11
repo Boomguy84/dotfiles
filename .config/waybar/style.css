@@ -57,6 +57,23 @@ tooltip label {
     border-radius: 10px;
 }
 
+/* State-based colors */
+#network.wifi {
+  color: @color8;              /* accent for Wi-Fi */
+}
+
+#network.ethernet {
+  color: @color8;              /* accent for Ethernet */
+}
+
+#network.linked {
+  color: @color8;              /* link present, no IP */
+}
+
+#network.disconnected, #network.disabled {
+  color: #FF0000;              /* alert-ish for down/disabled */
+}
+
 #custom-launch_wofi,
 #custom-lock_screen,
 #custom-light_dark,
@@ -73,6 +90,7 @@ tooltip label {
 #pulseaudio,
 #network,
 #tray,
+#network,
 #temperature,
 #workspaces,
 #custom-spotify,

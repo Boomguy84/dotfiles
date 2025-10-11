@@ -36,6 +36,7 @@
         "pulseaudio",
         "pulseaudio#microphone",
         "tray",
+        "network",
         "custom/light_dark"
     ],
     
@@ -106,6 +107,23 @@
     "tray": {
         "icon-size": 18,
         "spacing": 10
+    },
+    
+    "network": {
+      "interval": 30,
+      "format-wifi": " ",
+      "format-ethernet": " ",
+      "format-disconnected": "󰤮 ",
+      "tooltip-format-wifi": "{essid}",
+      "tooltip-format-disconnected": "Disconnected",
+      "format-icons": [
+        "",  // very weak
+        "",
+        "",
+        "",  // strong
+        "",  // full
+        ""
+      ]
     },
 
     "clock": {
