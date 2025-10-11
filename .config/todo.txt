@@ -44,3 +44,5 @@ make hyprland start at launch, preferably making hyprlock the landing screen
 fix theming, the top right button doesnt work
 
 fix screenshot shit, mainly hyprland.conf bindings
+
+swaync instead of mako probs
