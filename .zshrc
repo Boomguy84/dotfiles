@@ -1,3 +1,6 @@
+# show fastfetch ASAP (fire-and-forget)
+#command -v fastfetch >/dev/null 2>&1 && { fastfetch }
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -228,3 +231,23 @@ _fastfetch_once() {
 add-zsh-hook precmd _fastfetch_once
 # --- end fastfetch ---
 
+# --- lazy-load conda only when used ---
+_conda_bootstrap() {
+  # shell hook is heavy; do it once on first use
+  local hook
+  hook="$("$HOME/miniconda3/bin/conda" shell.zsh hook 2>/dev/null)" || return
+  eval "$hook"
+}
+
+conda() {
+  # resolve "conda" on first call, then tail-call original conda
+  unfunction conda 2>/dev/null
+  _conda_bootstrap
+  command conda "$@"
+}
+
+# quick helper to activate envs without loading on login
+ca() {
+  _conda_bootstrap
+  conda activate "$@"
+}

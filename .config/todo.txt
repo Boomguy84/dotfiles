@@ -30,6 +30,7 @@ fix waybar locking
 
 test out ewww
 
+# script made and works, add as a widget/waybar module
 potential bus widget
 
 # DONE
@@ -46,3 +47,5 @@ fix theming, the top right button doesnt work
 fix screenshot shit, mainly hyprland.conf bindings
 
 swaync instead of mako probs
+
+add llm integration into nvim (like cursor)
