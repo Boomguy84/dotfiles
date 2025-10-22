@@ -99,6 +99,7 @@ tooltip label {
 #custom-player-next,
 #custom-spotify-logo,
 #image.spotify-art,
+#custom-ltc,
 #backlight {
     background: alpha(@background, 0.8);  /* semi-transparent panels */
     opacity: 0.8;
@@ -141,6 +142,12 @@ tooltip label {
     border-radius: 10px;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#custom-ltc {
+    color: #5aabf2;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
 #custom-launch_wofi {

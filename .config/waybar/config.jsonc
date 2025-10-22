@@ -1,5 +1,5 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "position": "top",
     "mod": "dock",
     "exclusive": true,
@@ -28,6 +28,7 @@
         "custom/player-prev",
         "custom/player-toggle",
         "custom/player-next",
+        "custom/ltc",
         "custom/clock",
         "temperature",
         "custom/power_profile",
@@ -254,5 +255,13 @@
         "signal": 10,
         "size": 25,                            // roughly the Spotify icon size
         "tooltip": false
+    },
+
+    "custom/ltc": {
+        "interval": 10,
+        "return-type": "json",
+        "exec": "/home/scott/miniconda3/bin/conda run -n base python ~/.config/scripts/bus_script.py --waybar --route 34",
+        "format": "󰃧 {text}",
+        "tooltip": "{tooltip}"
     }
 }
