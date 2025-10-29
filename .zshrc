@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 export BROWSER=google-chrome-stable
 export EDITOR=nvim
 export TERMINAL=kitty
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"

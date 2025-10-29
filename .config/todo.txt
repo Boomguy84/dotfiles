@@ -21,8 +21,10 @@ add nvim auto theme update
 
 fix hyprland config
 
+# DONE
 fix wofi to be like: https://github.com/Narsell/dotfiles/tree/main
 
+# DONE
 add tray stuff
 
 # DONE
@@ -31,6 +33,7 @@ fix waybar locking
 test out ewww
 
 # script made and works, add as a widget/waybar module
+# DONE
 potential bus widget
 
 # DONE
@@ -48,4 +51,5 @@ fix screenshot shit, mainly hyprland.conf bindings
 
 swaync instead of mako probs
 
+# maybe not needed, tiling windows idiot
 add llm integration into nvim (like cursor)
