@@ -59,7 +59,7 @@
 
     "custom/light_dark": {
         "format": "󰐾",
-        "on-click": "~/.config/scripts/wallpaper_theming.sh",
+        "on-click": "bash -lc '$HOME/.config/scripts/wallpaper_theming.sh'",
         "tooltip": true,
         "tooltip-format": "Click to cycle wallpaper and theme"
     },
