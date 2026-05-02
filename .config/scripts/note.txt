@@ -1,0 +1,5 @@
+.env file was not commit to git for obvious reasons, go check your phone for the photo you took of the file
+
+DATE TODAY:
+
+May 1, 2026
