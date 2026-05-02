@@ -1,0 +1,11 @@
+[manager]
+border = "#4c4177"        # color0: dark purple border
+highlight = "#f38ba8"     # color1: pink highlight (cursor, selected)
+marker = "#a277ff"        # color3: light purple marker for files
+title = "#d8d3e7"         # foreground color for titles
+
+[preview]
+syntax = true             # enable syntax highlighting in preview
+background = "#1e1b29"    # Kitty background color
+foreground = "#d8d3e7"    # Kitty foreground color
+

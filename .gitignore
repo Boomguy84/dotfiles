@@ -43,6 +43,12 @@
 !.config/splash/
 !.config/splash/**
 
+# add backup yazi & rofi
+!.config/rofi/
+!.config/rofi/**
+!.config/yazi.bak/
+!.config/yazi.bak/**
+
 # Optional extras
 !.config/btop/
 !.config/btop/**
